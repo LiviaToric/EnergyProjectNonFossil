@@ -1,0 +1,116 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 750px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "group": 1, "id": "ASUgreen", "label": "ASUgreen", "shape": "dot", "title": "ASUgreen Neighbors:\u003cbr\u003eshell", "value": 1}, {"font": {"color": "white"}, "group": 1, "id": "shell", "label": "shell", "shape": "dot", "title": "shell Neighbors:\u003cbr\u003eASUgreen\u003cbr\u003eStanford_Woods", "value": 2}, {"font": {"color": "white"}, "group": 2, "id": "UMNIonE", "label": "UMNIonE", "shape": "dot", "title": "UMNIonE Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "group": 3, "id": "Stanford_Woods", "label": "Stanford_Woods", "shape": "dot", "title": "Stanford_Woods Neighbors:\u003cbr\u003eshell", "value": 1}, {"font": {"color": "white"}, "id": "exxonmobil", "label": "exxonmobil", "shape": "dot", "title": "exxonmobil Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "shell_us", "label": "shell_us", "shape": "dot", "title": "shell_us Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "total", "label": "total", "shape": "dot", "title": "total Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "eni", "label": "eni", "shape": "dot", "title": "eni Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "chevron", "label": "chevron", "shape": "dot", "title": "chevron Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "equinor", "label": "equinor", "shape": "dot", "title": "equinor Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "equinor_na", "label": "equinor_na", "shape": "dot", "title": "equinor_na Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "aramco", "label": "aramco", "shape": "dot", "title": "aramco Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "aramco_americas", "label": "aramco_americas", "shape": "dot", "title": "aramco_americas Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "bp_plc", "label": "bp_plc", "shape": "dot", "title": "bp_plc Neighbors:\u003cbr\u003e", "value": 0}, {"font": {"color": "white"}, "id": "conocophillips", "label": "conocophillips", "shape": "dot", "title": "conocophillips Neighbors:\u003cbr\u003e", "value": 0}]);
+        edges = new vis.DataSet([{"from": "ASUgreen", "to": "shell", "value": 0.014864730948369834}, {"from": "Stanford_Woods", "to": "shell", "value": 0.006756300249983109}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "barnesHut": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.3,
+            "damping": 0.09,
+            "gravitationalConstant": -80000,
+            "springConstant": 0.001,
+            "springLength": 250
+        },
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
